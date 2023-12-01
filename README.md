@@ -1,8 +1,10 @@
 # k8s_cicd_project:-
+
 * This repository contains a Python script, an HTML file, a requirements.txt file, and a Dockerfile.
 * This entire project will be implemented on Kubernetes clusters on AWS using Kops.
 
 # The following uses cli to create a S3 bucket:-
+
 * The instance on which you are executing kops commands needs to be associated with an admin role.
 * Or we need to configure aws access_key and access_secret_key on the machine using 'aws configure'. To do so, we must install the AWScli tool on the machine.
 
@@ -44,12 +46,16 @@
 
 Before triggering job and enter the below commands to execute the Kubernetes script with Jenkins user:
 
+
+Example: If you are logged in to the EC2 machine at ec2-user profile,
+
+
 * mkdir -p /var/lib/jenkins/.kube
 
-* sudo cp -i /root/.kube/config /var/lib/jenkins/.kube/config
+* sudo cp .kube/config /var/lib/jenkins/.kube/config
 
 * sudo chown  jenkins:jenkins –R /var/lib/jenkins/.kube/config
 
-* sudo chown  Jenkins:jenkins -R /var/lib/jenkins/.kube/
+* sudo chown  jenkins:jenkins -R /var/lib/jenkins/.kube/
 
 
