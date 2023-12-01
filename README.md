@@ -5,7 +5,9 @@
 # The following uses cli to create a S3 bucket:-
 * The instance on which you are executing kops commands needs to be associated with an admin role.
 * Or we need to configure aws access_key and access_secret_key on the machine using 'aws configure'. To do so, we must install the AWScli tool on the machine.
-# Because "aws configure" doesn't export these vars for kops to use, we export them now
+
+* Because "aws configure" doesn't export these vars for kops to use, we export them now.
+  
 * aws configure
 
 * export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
