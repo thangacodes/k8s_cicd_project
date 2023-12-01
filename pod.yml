@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: python-lb
+  name: python-applb
 spec:
   type: LoadBalancer
   selector:
@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-pod
+  name: python-deployment
 spec:
   replicas: 3
   selector:
@@ -27,5 +27,5 @@ spec:
     spec:
       containers:
         - name: hello
-          image: durai5050/kubeproject6:46
+          image: durai5050/skating:latest
           imagePullPolicy: Always
