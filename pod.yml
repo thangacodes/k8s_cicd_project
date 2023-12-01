@@ -27,5 +27,5 @@ spec:
     spec:
       containers:
         - name: hello
-          image: durai5050/python_app:latest
+          image: durai5050/kubeproject6:46
           imagePullPolicy: Always
