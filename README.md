@@ -18,7 +18,7 @@
   
 * aws s3 ls
 
-* aws s3 ls cloudbird-k8s-kops-store
+* aws s3 ls anvika-k8s-kops-store
   
 * aws s3api put-bucket-versioning --bucket anvika-kops-store --region ap-south-1 --versioning-configuration Status=Enabled
   
@@ -35,3 +35,21 @@
 * kops update cluster --name ${NAME} --yes
   
 * kops validate cluster --name ${NAME}
+
+## After the cluster has been edited or upgraded, update the cloud resources with:
+
+* kops update cluster anvika.k8s.local --yes --state=s3://anvika-k8s-kops-store --yes
+
+### If you are planning to deploy applications on Kubernetes via Jenkins CICD, you should copy the config file from the Kube folder and move it to jenkins folder.
+
+Before triggering job and enter the below commands to execute the Kubernetes script with Jenkins user:
+
+* mkdir -p /var/lib/jenkins/.kube
+
+* sudo cp -i /root/.kube/config /var/lib/jenkins/.kube/config
+
+* sudo chown  jenkins:jenkins –R /var/lib/jenkins/.kube/config
+
+* sudo chown  Jenkins:jenkins -R /var/lib/jenkins/.kube/
+
+
