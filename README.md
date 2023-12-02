@@ -30,13 +30,18 @@
   
 * kops create cluster --name ${NAME} --zones ap-south-1a --master-size t2.large --node-size t2.large --kubernetes-version 1.27.0 --cloud aws
   
-* kops get cluster
+* list clusters with: kops get cluster
+
   
-* kops edit cluster --name ${NAME}
+* edit this cluster with: kops edit cluster --name ${NAME}
+
   
-* kops update cluster --name ${NAME} --yes
+* edit your node instance group: kops update cluster --name ${NAME} --yes --admin
+
   
-* kops validate cluster --name ${NAME}
+* edit your control-plane instance group: kops validate cluster --name ${NAME}
+
+
 
 ## After the cluster has been edited or upgraded, update the cloud resources with:
 
