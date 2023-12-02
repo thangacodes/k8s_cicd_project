@@ -63,4 +63,7 @@ Example: If you are logged in to the EC2 machine at ec2-user profile,
 
 * sudo chown  jenkins:jenkins -R /var/lib/jenkins/.kube/
 
+### In order to delete the cluster,
+
+* kops delete cluster --name ${NAME} --state ${KOPS_STATE_STORE} --yes
 
