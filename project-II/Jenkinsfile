@@ -16,7 +16,7 @@ pipeline {
                 sh 'docker images'
             }
         }
-        stage('Push Docker Image to DockerHub'){
+        stage('Push DockerImage to DockerHub'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'docker_credPassword', usernameVariable: 'docker_credUsername')]){
                     sh "docker login -u ${env.docker_credUsername} -p ${env.docker_credPassword}"
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy on Kubernetes'){
+        stage('Deploy On K8cluster'){
             steps{
                 sh 'kubectl apply -f /var/lib/jenkins/workspace/cicd/project-II/pod.yml'
                 sh 'kubectl rollout restart deployment loadbalancer-pod'
