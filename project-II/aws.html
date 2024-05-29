@@ -1,0 +1,39 @@
+<!Doctype Html>
+<Html>
+<Head>
+<Title>
+TransitGateway Page
+</Title>
+</Head>
+<Body bgcolor="White">
+<br>
+<br>
+<b> <font color="Blue"> Terraform Tutorial on TransitGateway!! </font> </b><br> 
+<br>
+<b> This page contains running notes on what we will accomplish using Terrafrom (IaC).</b>
+<br>
+<br>
+<b> <font color="red">What is an AWS transit gateway? </font></b> <br> <br>
+The Amazon Transit Gateway connects your Amazon Virtual Private Clouds (VPCs) and on-premises networks through a central hub, simplifying your network and eliminating complex peering relationships. The Transit Gateway acts as a highly scalable cloud router; each new connection is only made once. During this demo, we have two VPCs, whose <b> CIDR_RANGE is "15.15.0.0/16" and "16.16.0.0/16", while each public subnet under each VPC has a CIDR_RANGE of "15.15.1.0/24" and "16.16.1.0/24" </b>.
+<br>
+<br>
+Two Internet gateways, two RouteTables, each with a route to configure, one transit gateway and two TGW attachments need to be created for each VPC, and two security groups and two EC2 instances with Apache webservers need to be created. If we have defined the Web Server Endpoints during instance creation, you will receive an output block. 
+<br>
+<br>
+Open your local browser, such as Chrome/Edge/Brave, and try to connect to the Web Server Endpoints at Port_Number:80.
+Try accessing the Web endpoints like http://Public_IP:80/ in your browser. First and foremost, make sure the HTTP port is enabled in the security group's inbound rules.
+<br>
+<br>
+You can find the entire code on GitHub by clicking on the link below,
+<br>
+<br>
+<a href="https://github.com/thangacodes/project_usecase/tree/main/aws_terraform/transit_gateway_for_2_vpcs" target="_blank">thangacodes
+<br>
+<br>
+ <footer>
+      &copy; <em id="date"></em>Cloudbird.fun
+  </footer>
+<br>
+<br>
+</Body>
+</Html>
