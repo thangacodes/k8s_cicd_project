@@ -1,4 +1,5 @@
 Kubernetes Project
+
 Step 1: Create Ubuntu EC2 & Install the Jenkins Server
 AMI ID: Ubuntu 24.04
 Instance Spec: t2.medium
