@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Code Clone') {
+            steps {
+                echo 'Code cloning will be happen shortly'
+                git branch: 'main', url: 'https://github.com/thangacodes/k8s_cicd_project.git'
+            }
+        }
+        stage('Build DockerImage'){
+            steps{
+                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/cicd/project-II/'
+                sh 'sudo docker tag staticimage durai5050/staticimage:latest'
+                sh 'sudo docker tag staticimage durai5050/staticimage:${BUILD_NUMBER}'
+                sh 'docker images'
+            }
+        }
+        stage('Push Docker Image to DockerHub'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'docker_credPassword', usernameVariable: 'docker_credUsername')]){
+                    sh "docker login -u ${env.docker_credUsername} -p ${env.docker_credPassword}"
+                    sh 'docker image push durai5050/staticimage:latest'
+                    sh 'docker image push durai5050/staticimage:${BUILD_NUMBER}'
+                }
+            }
+        }
+        stage('Deploy on Kubernetes'){
+            steps{
+                sh 'kubectl apply -f /var/lib/jenkins/workspace/cicd/project-II/pod.yml'
+                sh 'kubectl rollout restart deployment loadbalancer-pod'
+            }
+        }
+        stage('CleanWorkspace'){
+            steps{
+                cleanWs()
+            }
+        }
+    }
+}
