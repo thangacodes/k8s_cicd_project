@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build DockerImage'){
             steps{
-                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/cicd/project-II/'
+                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/cicd/k8s_cicd_project/project-II/'
                 sh 'sudo docker tag staticimage durai5050/staticimage:latest'
                 sh 'sudo docker tag staticimage durai5050/staticimage:${BUILD_NUMBER}'
                 sh 'docker images'
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deploy On K8cluster'){
             steps{
-                sh 'kubectl apply -f /var/lib/jenkins/workspace/cicd/project-II/pod.yml'
+                sh 'kubectl apply -f /var/lib/jenkins/workspace/cicd/k8s_cicd_project/project-II/pod.yml'
                 sh 'kubectl rollout restart deployment loadbalancer-pod'
             }
         }
