@@ -1,0 +1,61 @@
+
+## 13 most commonly used commands for Kubernetes:
+
+Here are 13 of the most commonly used kubectl commands for managing a real production Kubernetes environment,
+along with explanations and common use cases:
+
+Core Management:
+
+# kubectl get
+--> kubectl get pod (list pod)
+--> kubectl get deployments (list deployments)
+--> kubectl get services (list services)
+--> kubectl get all (list most resources in a namespace)
+
+# kubectl describe
+--> kubectl describe pod my-pod
+--> kubectl describe node my-node
+
+# kubectl create
+--> kubectl create -f my-deployment.yaml
+
+# kubectl apply
+--> kubectl apply -f my-deployment.yaml (apply a deployment definition)
+
+# kubectl delete 
+--> kubectl delete pod my-pod
+--> kubectl delete service my-service
+
+## Debugging and Troubleshooting:
+
+# kubectl logs
+--> kubectl logs my-pod
+--> kubectl logs my-pod -c my-container (specify a container)
+
+# kubectl exec:
+--> kubectl exec -it my-pod --/bin/bash (interactive shell)
+
+# kubectl port-forward:
+--> kubectl port-forward my-pod 8080:80
+
+# kubectl top:
+--> kubectl top pod (pod resource usage)
+--> kubectl top node (node resource usage)
+
+# kubectl explain:
+--> kubectl explain pod
+--> kubectl explain pod.spec (more specific)
+
+
+### Managing workloads:
+
+# kubectl rollout:
+--> kubectl rollout status deployment/my-deployment
+--> kubectl rollout undo deployment/my-deployment
+
+# kubectl scale:
+--> kubectl scale deployment/my-deployment --replicas=5
+
+# kubectl edit:
+--> kubectl edit deployment my-deployment
+
