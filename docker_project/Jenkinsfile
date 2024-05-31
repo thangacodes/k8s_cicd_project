@@ -19,11 +19,11 @@ pipeline {
         stage('Deploy app on Docker'){
             steps{
                 sh '''
-                  docker images
-                  docker ps
-                  docker run --name webapp durai5050/staticimage:latest
+                  sudo docker images
+                  sudo docker ps
+                  sudo docker run --name webapp durai5050/staticimage:latest
                   sleep 3
-                  docker ps -a
+                  sudo docker ps -a
                   '''
             }
         }
