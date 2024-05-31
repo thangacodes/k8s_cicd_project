@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build DockerImage'){
             steps{
-                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/docker_build/k8s_cicd_project/docker_project/'
+                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/docker_project/'
                 sh 'sudo docker tag staticimage durai5050/staticimage:latest'
                 sh 'sudo docker tag staticimage durai5050/staticimage:${BUILD_NUMBER}'
                 sh 'docker images'
