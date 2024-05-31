@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Code Clone') {
+            steps {
+                echo 'Code cloning will be happen shortly'
+                git branch: 'main', url: 'https://github.com/thangacodes/k8s_cicd_project.git'
+            }
+        }
+        stage('Build DockerImage'){
+            steps{
+                sh 'sudo docker build -t staticimage /var/lib/jenkins/workspace/docker_build/k8s_cicd_project/docker_project/'
+                sh 'sudo docker tag staticimage durai5050/staticimage:latest'
+                sh 'sudo docker tag staticimage durai5050/staticimage:${BUILD_NUMBER}'
+                sh 'docker images'
+            }
+        }
+        stage('Deploy app on Docker'){
+            steps{
+                sh '''
+                  docker images
+                  docker ps
+                  docker run --name webapp durai5050/staticimage:latest
+                  sleep 3
+                  docker ps -a
+                  '''
+            }
+        }
+        stage('CleanWorkspace'){
+            steps{
+                cleanWs()
+            }
+        }
+    }
+}
