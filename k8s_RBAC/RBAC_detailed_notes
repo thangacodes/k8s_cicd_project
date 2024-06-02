@@ -1,0 +1,96 @@
+
+The RBAC API declares four kinds of Kubernetes object:
+
+1. Role
+2. ClusterRole
+3. RoleBinding
+4. ClusterRoleBinding
+
+
+# Kubectl create ns durai
+namespace/durai created
+# vi serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: test-sa
+  namespace: durai
+---
+# kubectl apply -f serviceaccount.yaml
+Serviceaccount/test-sa created.
+
+# kubectl auth can-i --as system:serviceaccount:test-sa get pods -n durai
+Ans: no
+
+## Creating role first:
+
+# vim role.yaml
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: durai
+  name: testadmin-role
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+----
+
+# kubectl apply -f role.yaml
+role.rbac.authorization.k8s.io/testadmin-role created.
+
+# kubectl auth can-i --as system:serviceaccount:test-sa get pods -n durai
+Ans: no
+
+# vim rolebinding.yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: testadminbinding
+  namespace: durai
+subjects:
+- kind: ServiceAccount
+  name: test-sa
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testadmin-role
+  apiGroup: ""
+
+# kubectl apply -f rolebinding.yaml
+rolebinding.rbac.authorization.k8s.io/testadminbinding created
+
+# kubectl auth can-i --as system:serviceaccount:test-sa get pods -n durai
+Ans: yes
+
+# kubectl auth can-i --as system:serviceaccount:test-sa create pods -n durai
+Ans: yes
+
+# kubectl auth can-i --as system:serviceaccount:test-sa create deployments -n durai
+
+## Clusterbinding role
+
+# vim clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: testadminclusterbinding
+subjects:
+- kind: ServiceAccount
+  name: test-sa
+  apiGroup: ""
+  namespace: durai
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: ""
+
+# kubectl apply -f clusterrolebinding.yaml
+clusterrolebinding.rbac.authorization.k8s.io/testadminclusterbinding created
+
+# kubectl auth can-i --as system:serviceaccount:test-sa create deployments -n kube-system
+Ans: yes
+
+# kubectl auth can-i --as system:serviceaccount:test-sa delete deployments -n default
+Ans: yes
+
