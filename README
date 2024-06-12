@@ -1,26 +1,18 @@
 # Kubernetes Project
 
 Step 1: Create Ubuntu EC2 & Install the Jenkins Server
-
 AMI ID: Ubuntu 24.04
-
 Instance Spec: t2.medium
-
 Ingress_rule: Allowed all TCP ports
 
-Update all software packages on Ubuntu server
-
-sudo su - root     // Switch user to root
-
-apt-get update    // Downloads the index files
-
-apt-get upgrade  // Upgrade downloads the latest versions packages of the installed packages.
+# Update all software packages on Ubuntu server
+$ sudo su - root     // Switch user to root
+$ apt-get update    // Downloads the index files
+$ apt-get upgrade  // Upgrade downloads the latest versions packages of the installed packages.
 
 # Install Java on Ubuntu server:
-
-sudo apt-get install default-jdk 
-
-java -version
+$ sudo apt-get install default-jdk 
+$ java -version
 
 # Jenkins Installation
 
@@ -133,18 +125,13 @@ Install Kops
 
 curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
 
-chmod +x kops
-
-sudo mv kops /usr/local/bin/kops
-
+$ chmod +x kops
+$ sudo mv kops /usr/local/bin/kops
 
 # Install kubectl
-
-curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl 
-
-chmod +x ./kubectl 
-
-sudo mv ./kubectl /usr/local/bin/kubectl
+$ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl 
+$ chmod +x ./kubectl 
+$ sudo mv ./kubectl /usr/local/bin/kubectl
 
 # AWS CLI Installation
 
