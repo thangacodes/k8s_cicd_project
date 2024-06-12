@@ -146,25 +146,18 @@ sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --u
 Create IAM user with Admin access policy and generate IAM access & Secret Key aws configure aws s3 ls
 
 # Generate Keys
-
 ssh-keygen
 
 # Set Env Variables for Kops
-
 export AWS_ACCESS_KEY_ID= ""
-
 export AWS_SECRET_ACCESS_KEY= "" 
-
 export NAME=anvi.k8s.local 
-
 export KOPS_STATE_STORE=s3://kops22042022
 
 # Create Kubernetes Cluster
-
 kops create cluster --zones ap-south-1a ${NAME} kops update cluster --name ${NAME} --yes --admin
 
 # Step 6: Deploy to kubernetes
-
 Add a new stage in Jenkins file
 
 pipeline { 
@@ -198,19 +191,13 @@ stages {
 }
 
 # Configure Webhook in github & Jenkins
-
 Github Repo Setting -> Webhooks -> http://x.y.z.a:8080/github-webhook/ 
-
 Jenkins Job -> Build Triggers -> GitHub hook trigger for GITSCM polling
 
 # Make a Commit & Run the Deployment
-
 make changes in the pod.yaml for correct image name 
 
-git -am commit "Test Run" 
-
-git push origin master 
-
-Check Deployment in Kubernetes cluster
-
-kubectl get pods --all-namespaces 
+$ git -am commit "Test Run" 
+$ git push origin master 
+# Check Deployment in Kubernetes cluster
+$kubectl get pods --all-namespaces 
