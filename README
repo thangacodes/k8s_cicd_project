@@ -65,7 +65,6 @@ $ exit
 $ sudo su - root           //Switch user to root
 
 # Run the three stages in Jenkinsfile
-
 pipeline { agent any
 
 stages {
@@ -164,5 +163,6 @@ make changes in the pod.yaml for correct image name
 
 $ git -am commit "Test Run" 
 $ git push origin master 
+
 # Check Deployment in Kubernetes cluster
-$kubectl get pods --all-namespaces 
+$ kubectl get pods --all-namespaces 
