@@ -1,5 +1,6 @@
-## Kubernetes Project
+Setting Up Jenkins pipeline for Kubernetes deployment:
 
+```bash
 Step 1: Create Ubuntu EC2 & Install the Jenkins Server
 AMI ID: Ubuntu 24.04 (ami-0f58b397bc5c1f2e8)
 Instance Spec: t2.medium
@@ -56,7 +57,7 @@ pipeline {
 Docker Installation
 $ sudo apt install docker.io 
 Open DockerHub account 
-$ https://login.docker.com/u/login/identifier?state=hKFo2SB5X2p6aURDSFAya2xoS3hWeDZGQU9QTFVfVEtwSF94dqFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIEdzS09sUkJ0NVd5ZTRFUUhpVGxnUXRPdGZFcnpsanpOo2NpZNkgbHZlOUdHbDhKdFNVcm5lUTFFVnVDMGxiakhkaTluYjk 
+$ https://login.docker.com/
 $ docker login
 Give Jenkins Permission to run sudo commands
 $ vi /etc/sudoers 
